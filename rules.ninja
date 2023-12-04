@@ -1,0 +1,2 @@
+rule clean
+  command = rm -f calculator.o main.o libcalculator.a calculator_app

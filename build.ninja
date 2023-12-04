@@ -1,0 +1,11 @@
+rule compile
+  command = g++ -Wall -std=c++11 -c $in -o $out
+
+rule link
+  command = g++ -Wall -std=c++11 $in -o $out -L. -lcalculator
+  description = Linking $out
+
+build calculator.o: compile calculator.cpp || calculator.h
+build main.o: compile main.cpp || calculator.h
+build libcalculator.a: link calculator.o || calculator.h
+build calculator_app: link main.o libcalculator.a || calculator.h
